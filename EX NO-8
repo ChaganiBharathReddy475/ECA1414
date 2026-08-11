@@ -1,0 +1,33 @@
+#define GAS_SENSOR A0
+#define LED_PIN 13
+
+int gasValue;
+
+void setup()
+{
+  pinMode(GAS_SENSOR, INPUT);
+  pinMode(LED_PIN, OUTPUT);
+
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  gasValue = analogRead(GAS_SENSOR);
+
+  Serial.print("Gas Value: ");
+  Serial.println(gasValue);
+
+  if (gasValue > 400)
+  {
+    digitalWrite(LED_PIN, HIGH);
+    Serial.println("GAS DETECTED!");
+  }
+  else
+  {
+    digitalWrite(LED_PIN, LOW);
+    Serial.println("NO GAS");
+  }
+
+  delay(500);
+}
